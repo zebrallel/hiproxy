@@ -2,10 +2,11 @@
 
 require('colors');
 var path = require('path');
-var homedir = require('os-homedir');
+var homedir = require('os-homedir'); // 这个包可以用来获取不同平台下的home目录，比如mac下就是 /user/${username}
 var hiproxy = require('../src/index');
 
-var Args = require('hemsl');
+var Args = require('hemsl'); // 根据命令行参数执行对应命令
+
 var showImage = require('../src/helpers/showImage');
 var packageInfo = require('../package');
 var pluginManager = require('../src/plugin');
@@ -25,9 +26,9 @@ var _args = new Args({
 
 global.hiproxy = hiproxy;
 
-// add test
 // global.log = log;
 
+// 注册各个命令
 'init start stop restart state open'.split(' ').forEach(function (cmd) {
   var cmdConfig = require(path.join(__dirname, '..', 'src', 'commands', cmd));
 

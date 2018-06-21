@@ -20,6 +20,7 @@ module.exports = {
       if (err) {
         console.log('Create a default rewrite file error:', err.message);
       } else {
+        // 使用process.cwd() 可以获取当前执行程序的运行目录，比如： /Users/jearbilove/xlearn/repos/hiproxy-example/workspace
         fs.writeFile(path.resolve(process.cwd(), 'rewrite'), data, function (err) {
           if (err) {
             console.log('Create a default rewrite file error:', err.message);
