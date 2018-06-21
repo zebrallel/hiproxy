@@ -61,12 +61,6 @@
     "semistandard": "^10.0.0",
     "set-cookie-parser": "^2.1.1"
   },
-  "config": {
-    "ghooks": {
-      "pre-commit": "./node_modules/.bin/semistandard",
-      "pre-push": "npm test"
-    }
-  },
   "files": [
     "src",
     "ssl",
