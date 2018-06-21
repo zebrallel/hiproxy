@@ -25,6 +25,7 @@ var _args = new Args({
 
 global.hiproxy = hiproxy;
 
+// add test
 // global.log = log;
 
 'init start stop restart state open'.split(' ').forEach(function (cmd) {
