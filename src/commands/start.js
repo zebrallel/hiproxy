@@ -27,15 +27,15 @@ module.exports = {
       validate: /^\d+$/,
       describe: 'HTTP proxy port, default: 5525'
     },
-    'daemon': {
+    'daemon': { // daemon mode 玩法?
       alias: 'D',
       describe: 'Run hiproxy in background'
     },
-    'https': {
+    'https': { // https代理是怎么玩的？
       alias: 's',
       describe: 'Enable HTTPS proxy'
     },
-    'middle-man-port <port>': {
+    'middle-man-port <port>': { // 中间人代理接口是怎么玩的？
       alias: 'm',
       describe: 'The HTTPS proxy port, default: 10010'
     },
@@ -43,13 +43,13 @@ module.exports = {
       alias: 'o',
       describe: 'Open a browser window and use hiproxy proxy'
     },
-    'pac-proxy': {
+    'pac-proxy': { // pac代理是怎么玩的？
       describe: 'Use ' + 'Proxy auto-configuration (PAC)'.underline
     },
-    'sys-proxy <path>': {
+    'sys-proxy <path>': { // sys代理是什么东西？
       describe: 'Your own proxy server path, format: <ip>[:port], only works when use PAC'
     },
-    'rewrite-file <files>': {
+    'rewrite-file <files>': { // 自定义rewrite文件
       alias: 'r',
       describe: 'rewrite'.underline + ' config files, format: <file1>[,<file2>[,...]]'
     },
@@ -65,8 +65,10 @@ module.exports = {
 };
 
 function startServer () {
+  // 这里的this就是Args的实例，上面带有启动参数
   var self = this;
   if (!global.args.__error__) {
+    // TODO: 暂时发现这个check似乎不好使
     return checkServerStarted().then(function () {
       var server = null;
       if (global.args.daemon && !process.env.__daemon) {
@@ -121,6 +123,7 @@ function _startServer (ctx) {
   var httpsPort = https !== 'false' ? cliArgs.middleManPort || 10010 : 0;
 
   var workspace = cliArgs.workspace || process.cwd();
+
   var proxy = new Proxy({
     httpPort: port,
     httpsPort: httpsPort,
